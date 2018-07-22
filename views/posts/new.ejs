@@ -1,0 +1,39 @@
+<% include ../partials/header %>
+<div class="container text-center">
+    <div class="row">
+        <h1>Create a New Post</h1>
+        <div style='width:30%; margin:0 auto;'>
+            <form action="/posts" method="POST">
+                <!--Title --> 
+                <div class='form-group'>
+                    <input class="form-control" type="text" name="title" placeholder="Song or Album">
+                </div>
+                <!--Artist --> 
+                <div class='form-group'>
+                    <input class="form-control" type="text" name="artist" placeholder="artist">
+                </div>
+                <!--Album Art --> 
+                <div class='form-group'>
+                    <input class="form-control" type="text" name="image"  placeholder="image url">
+                </div>
+                <!--Post Content --> 
+                <div class='form-group'>
+                    <textarea id="description" class="form-contol" name="description" placeholder="Description"></textarea>
+                </div>
+                
+                <!--Rating --> 
+                <!--<div class='form-group'>-->
+                <!--    <input class="form-control" type="text" name="Rating"  placeholder="Rating">-->
+                <!--</div>-->
+                
+                <!--Submit --> 
+                <div class='form-group'>
+                  <button class="btn btn-lg btn-primary btn-block">Submit</button>
+                </div>
+            </form>
+        </div>
+
+<a href="/posts">Go Back</a>
+    </div>
+</div>
+<% include ../partials/footer %>

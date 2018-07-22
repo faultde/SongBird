@@ -1,0 +1,30 @@
+.thumbnail img {
+    width:100%;
+}
+.thumbnail {
+    padding:0;
+}
+.thumbnail .caption-full{
+    padding: 9px;
+}
+
+.delete-form{
+    display: inline;
+}
+
+/*.jumbotron {*/
+/*    background-color:transparent !important; */
+/*}*/
+
+
+#description{
+    width:400px;
+}
+
+.login-form{
+    text-align: center;
+    width:auto;
+    height:auto;
+}
+.login-userinput{margin-bottom: 10px;}
+.login-button{margin-top:10px;}

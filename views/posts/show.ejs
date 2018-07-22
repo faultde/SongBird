@@ -1,0 +1,70 @@
+<% include ../partials/header %>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <p class="lead">SongBird</p>
+            <div class="list-group">
+                <div class="list-group-item">Purchase @</div>
+                <div class="list-group-item">Spotify</div>
+                <div class="list-group-item">Youtube</div>
+            </div>
+        </div>
+        <div class="col-md-9">
+            <div class="thumbnail">
+                <img class="img-responsive" src="<%=post.image %>">
+                <div class="caption-full">
+                    <div class="text-center">
+                    <h2><%=post.title%></h2>
+                    <h4><%=post.artist%></h4>
+                    <p><%-post.description%></p>
+                    </div>
+                    
+                    <p><em>Submited by: </em><%= post.author.username %></p>
+                        
+                    <div class="container">
+                        <%= post.tags %>
+                    </div>
+                        
+                        <% if(currentUser && post.author.id.equals(currentUser.id)){ %>
+                        
+                        <a class="btn btn-xs btn-warning" href="/posts/<%=post.id %>/edit">Edit</a>
+                        <form class="delete-form" action="/posts/<%= post.id%>?_method=DELETE" method="POST">
+                            <button class="btn btn-xs btn-danger"?>Delete</button>
+                        </form>
+                        
+                        <% } %>
+                </div>
+            </div>
+            <div class="well">
+                <div class="text-right">
+                    <a class="btn btn-success" href="/posts/<%= post.id%>/comments/new">Add Comment</a>
+                </div>
+                <% post.comments.forEach(function(comment){ %>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <strong><%= comment.author.username %></strong>
+                            <p>
+                                <%= comment.text %>
+                            </p>
+                            
+                            <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>
+                            
+                            <a class="btn btn-xs btn-warning" 
+                            href="/posts/<%=post.id%>/comments/<%=comment._id%>/edit">
+                                Edit</a>
+                            <form class="delete-form"
+                            action="/posts/<%= post.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                <input type="submit" class="btn btn-xs btn-danger" value="delete">
+                            </form>
+                            <% } %>
+                            
+                        </div>
+                    </div>
+                <% }) %>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<% include ../partials/footer %>
