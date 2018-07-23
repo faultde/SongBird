@@ -4,38 +4,28 @@
         <title>SongBird</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
         <link rel="stylesheet" href="/stylesheets/landing.css">
+        <link href="https://fonts.googleapis.com/css?family=Knewave" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js" type="text/javascript" async></script>
     </head>
     <body>
-    
-    <div class="container">
-        <% if(error && error.length > 0){ %>
-            <div class="alert alert-danger" role="alert">
-                <%= error %>
+ 
+
+
+    <div class="container text-center">
+        <div class="row">
+    		    <div class="panel-body">
+                    <div>
+                       <div class="well"  id="landing-header">
+ 		                    <h1>SONGBIRD</h1>
+                     		<h2 id="tagline">Your portal to music discovery.</h2>
+                     		<br>
+                    		<a href="/posts" class="btn btn-lg btn-danger"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></a>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <% } %>
-        <% if(success && success.length > 0){ %>
-            <div class="alert alert-success" role="alert">
-                <%= success %>
-            </div>
-        <% } %>
-    </div>
-    
-    <div id="landing-header">
- 		<h1>SongBird
- 		<br>
- 		<small><span id="tagline">Your portal to music discovery</span></small>
- 		</h1>
- 		<br>
-		<a href="/posts" class="btn btn-lg btn-success"><span class="glyphicon glyphicon-music" aria-hidden="true"></span></a>
-    </div>
-    
-    <!--<ul class="slideshow">-->
-    <!--  <li></li>-->
-    <!--  <li></li>-->
-    <!--  <li></li>-->
-    <!--  <li></li>-->
-    <!--  <li></li>-->
-    <!--</ul>-->
+        </div>
+
+
 
 <% include partials/footer %>

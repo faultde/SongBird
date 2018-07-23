@@ -4,37 +4,50 @@
         <div class="col-md-3">
             <p class="lead">SongBird</p>
             <div class="list-group">
-                <div class="list-group-item">Purchase @</div>
-                <div class="list-group-item">Spotify</div>
-                <div class="list-group-item">Youtube</div>
+                <div class="list-group-item"><a href="#">Spotify</a></div>
+                <div class="list-group-item"><a href="#">Youtube</a></div>
             </div>
         </div>
         <div class="col-md-9">
-            <div class="thumbnail">
-                <img class="img-responsive" src="<%=post.image %>">
-                <div class="caption-full">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                   
+                        <img class="full-img" src="<%=post.image %>">
+                       
+                    
+                    <div class="caption-full">
+                        
                     <div class="text-center">
                     <h2><%=post.title%></h2>
                     <h4><%=post.artist%></h4>
                     <p><%-post.description%></p>
                     </div>
                     
-                    <p><em>Submited by: </em><%= post.author.username %></p>
-                        
-                    <div class="container">
-                        <%= post.tags %>
+                    <div id="tags">
+                        <p><em>tagged: </em>
+                        <a><%= post.tags %></a>
+                        </p>
                     </div>
-                        
-                        <% if(currentUser && post.author.id.equals(currentUser.id)){ %>
-                        
-                        <a class="btn btn-xs btn-warning" href="/posts/<%=post.id %>/edit">Edit</a>
-                        <form class="delete-form" action="/posts/<%= post.id%>?_method=DELETE" method="POST">
+                    <p>
+                        <em>Submited by:</em><%= post.author.username %>
+                    </p>
+                    
+                    </div>
+                </div>
+            </div>  
+        </div>
+            
+            <div class="col-md-9 well>
+                <% if(currentUser && post.author.equals(currentUser)){ %>
+                    <a class="btn btn-xs btn-warning" href="/post/<%=post.id %>/edit">Edit</a>
+                        <form class="delete-form" action="/post/<%= post.id%>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger"?>Delete</button>
                         </form>
                         
-                        <% } %>
-                </div>
+                <% } %>
             </div>
+
+        <div class="container">
             <div class="well">
                 <div class="text-right">
                     <a class="btn btn-success" href="/posts/<%= post.id%>/comments/new">Add Comment</a>

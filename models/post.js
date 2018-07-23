@@ -5,7 +5,12 @@ var postSchema = new mongoose.Schema({
    title: String,
    image: String,
    description: String,
-   tags: [{type: String}],
+   tags: [
+      {
+         type: String,
+         ref:"tag"
+         
+      }],
    author:{
       id : {
          type: mongoose.Schema.Types.ObjectId,
