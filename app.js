@@ -21,7 +21,9 @@ const commentRoutes    = require("./routes/comments"),
         //CONFIG LINES//
         
     //Mongoose DB connect
-mongoose.connect('mongodb://localhost/music_morsels');
+//mongoose.connect('mongodb://localhost/music_morsels');
+mongoose.connect('mongodb://faultde:password321@ds147451.mlab.com:47451/songbird');
+
     //Set FILETYPE EJS
 app.set('view engine', "ejs");
     //JSON PARSER
@@ -65,5 +67,5 @@ app.use("/posts",postRoutes);
 
     //Server Listener
 app.listen(process.env.PORT,process.env.IP,function(){
-    console.log('MusicMorsels Server has started');
+    console.log('SongBird Server has started');
 });
