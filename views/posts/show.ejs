@@ -1,80 +1,94 @@
 <% include ../partials/header %>
 <div class="container">
-    <div class="row">
-        <div class="col-md-3">
-            <p class="lead">SongBird</p>
-            <div class="list-group">
-                <div class="list-group-item"><a href="#">Spotify</a></div>
-                <div class="list-group-item"><a href="#">Youtube</a></div>
+        <div class="row">
+            
+                <!-- Media -->
+            <div class="col-md-3">
+                <p class="lead">SongBird</p>
+                <div class="list-group">
+                    <div class="list-group-item"><a href="#">Spotify</a></div>
+                    <div class="list-group-item"><a href="#">Youtube</a></div>
+                </div>
             </div>
-        </div>
-        <div class="col-md-9">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                   
-                        <img class="full-img" src="<%=post.image %>">
-                       
-                    
-                    <div class="caption-full">
-                        
-                    <div class="text-center">
-                    <h2><%=post.title%></h2>
-                    <h4><%=post.artist%></h4>
-                    <p><%-post.description%></p>
-                    </div>
-                    
-                    <div id="tags">
-                        <p><em>tagged: </em>
-                        <a><%= post.tags %></a>
-                        </p>
-                    </div>
-                    <p>
-                        <em>Submited by:</em><%= post.author.username %>
-                    </p>
-                    
+            
+             <!-- Media Player-->
+             <div class="container">
+                <div class="col-md-6">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                       <p><%-post.embed %></p>
                     </div>
                 </div>
-            </div>  
-        </div>
+                </div>
+                </div>
             
-            <div class="col-md-9 well>
-                <% if(currentUser && post.author.equals(currentUser)){ %>
-                    <a class="btn btn-xs btn-warning" href="/post/<%=post.id %>/edit">Edit</a>
-                        <form class="delete-form" action="/post/<%= post.id%>?_method=DELETE" method="POST">
+            
+                <!-- POST CONTENT -->
+            <div class="col-md-9">
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                       
+                            <img class="full-img" src="<%=post.image %>">
+                           
+                        
+                        <div class="caption-full">
+                            
+                        <div class="text-center">
+                        <h2><%=post.title%></h2>
+                        <h4><%=post.artist%></h4>
+                        <p><%-post.description%></p>
+                        </div>
+                        
+                        <p class="text-right">
+                            <em>Submited by:</em><%= post.author.username %>
+                        </p>
+                        
+                        </div>
+                        
+                    <!-- PUT CRUD BUTTONS -->
+                    <% if(currentUser && post.author.id.equals(currentUser.id)){ %>
+                                
+                               <a class="btn btn-xs btn-warning" href="/posts/<%=post.id %>/edit">Edit</a>
+                        <form class="delete-form" action="/posts/<%= post.id%>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger"?>Delete</button>
                         </form>
+                        <% } %>
                         
-                <% } %>
-            </div>
-
-        <div class="container">
-            <div class="well">
-                <div class="text-right">
-                    <a class="btn btn-success" href="/posts/<%= post.id%>/comments/new">Add Comment</a>
+                      
                 </div>
-                <% post.comments.forEach(function(comment){ %>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <strong><%= comment.author.username %></strong>
-                            <p>
-                                <%= comment.text %>
-                            </p>
-                            
-                            <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>
-                            
-                            <a class="btn btn-xs btn-warning" 
-                            href="/posts/<%=post.id%>/comments/<%=comment._id%>/edit">
-                                Edit</a>
-                            <form class="delete-form"
-                            action="/posts/<%= post.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
-                                <input type="submit" class="btn btn-xs btn-danger" value="delete">
-                            </form>
-                            <% } %>
-                            
-                        </div>
+                </div>  
+               
+               
+                
+                <!-- COMMENTS -->
+                <div class="well">
+                    <div class="text-right">
+                        <a class="btn btn-success" href="/posts/<%= post.id%>/comments/new">Add Comment</a>
                     </div>
-                <% }) %>
-            </div>
+                    <% post.comments.forEach(function(comment){ %>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <strong><%= comment.author.username %></strong>
+                                <p>
+                                    <%= comment.text %>
+                                </p>
+                                
+                        <% if(currentUser && comment.author.id.equals(currentUser.id)){ %>
+                                
+                                <a class="btn btn-xs btn-warning" 
+                                href="/posts/<%=post.id%>/comments/<%=comment._id%>/edit">
+                                    Edit</a>
+                                <form class="delete-form"
+                                action="/posts/<%= post.id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                                    <input type="submit" class="btn btn-xs btn-danger" value="delete">
+                                </form>
+                        <% } %>
+                                
+                            </div>
+                        </div>
+                    <% }) %>
+                </div>
+           
         </div>
     </div>
 </div>

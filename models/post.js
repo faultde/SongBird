@@ -5,12 +5,7 @@ var postSchema = new mongoose.Schema({
    title: String,
    image: String,
    description: String,
-   tags: [
-      {
-         type: String,
-         ref:"tag"
-         
-      }],
+   embed: String,
    author:{
       id : {
          type: mongoose.Schema.Types.ObjectId,

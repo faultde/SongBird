@@ -21,7 +21,9 @@ const commentRoutes    = require("./routes/comments"),
         //CONFIG LINES//
         
     //Mongoose DB connect
+    //LOCAL DEVELOPMENT DB
 //mongoose.connect('mongodb://localhost/music_morsels');
+    //CLOUD PRODUCTION DB
 mongoose.connect('mongodb://faultde:password321@ds147451.mlab.com:47451/songbird');
 
     //Set FILETYPE EJS
@@ -36,7 +38,7 @@ app.use(flash());
 app.use(express.static(__dirname + "/public"));
 
 
-seedDB();
+//seedDB();
 
 
     //Passport Config 

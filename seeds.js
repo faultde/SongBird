@@ -1,14 +1,19 @@
 var mongoose = require("mongoose");
 var Post = require("./models/post");
 var Comment   = require("./models/comment");
+var ObjectId = String;
 
 var data = [
     {
-        title: "Daughters: Self Titled", 
+        title: "Daughters", 
         artist: "Daughters",
         image: "https://upload.wikimedia.org/wikipedia/en/9/9a/DaughtersSelfTitled.jpg",
-        description: "blah blah blah",
-        tags: ["metal","heavy"]
+        description:'<iframe src="https://open.spotify.com/embed/album/1xYjZUrVUjcUPnpdnHD9nf" width="500" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>',
+        tags: ["metal","heavy"],
+        author: {
+      id :  ObjectId(123),
+      username: "Zach"
+   }
         
     }, 
     {
@@ -16,7 +21,11 @@ var data = [
         artist: "Ben Howard",
         image: "https://cps-static.rovicorp.com/3/JPG_500/MI0003/798/MI0003798962.jpg?partner=allrovi.com",
         description: "blah blah blah",
-        tags: ["indie","heavy"]
+        tags: ["indie","heavy"],
+        author: {
+      id :  ObjectId(123),
+      username: "Zach"
+   }
         
     },
      {
@@ -24,15 +33,22 @@ var data = [
         artist: "Trash Talk",
         image: "https://img.discogs.com/nz81M0Wcbs2HOJr8HAtPKDH4QA4=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-3107971-1316128217.jpeg.jpg",
         description: "blah blah blah",
-        tags: ["punk","heavy"]
-        
+        tags: ["punk","heavy"],
+        author: {
+      id :  ObjectId(123),
+      username: "Zach"
+   }
     },
      {
         title: "good kid, m.A.A.d City", 
         artist: "Kendrick Lamar",
         image: "https://images-na.ssl-images-amazon.com/images/I/51Zzc7PUDML._SY355_.jpg",
         description: "blah blah blah",
-        tags: ["rap","heavy"]
+        tags: ["rap","heavy"],
+       author: {
+      id :  ObjectId(123),
+      username: "Zach"
+   }
     },
 ]
 
