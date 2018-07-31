@@ -1,8 +1,12 @@
 <% include ../partials/header %>
 <div class="container text-center">
+    <div class="panel panel-info">
     <div class="row">
-        <h1>Create a New Post</h1>
-        <div style='width:30%; margin:0 auto;'>
+
+            <h1 style="padding-bottom:20px;">Create a New Post</h1>
+
+        
+        <div style='width:60%; margin:0 auto;'>
             <form action="/posts" method="POST">
                 <!--Title --> 
                 <div class='form-group'>
@@ -10,25 +14,29 @@
                 </div>
                 <!--Artist --> 
                 <div class='form-group'>
-                    <input class="form-control" type="text" name="artist" placeholder="artist">
+                    <input class="form-control" type="text" name="artist" placeholder="Artist">
                 </div>
                 <!--Album Art --> 
                 <div class='form-group'>
-                    <input class="form-control" type="text" name="image"  placeholder="image url">
+                    <input class="form-control" type="text" name="image"  placeholder="Image URL">
+                </div>
+                <!--Tags --> 
+                <div class='form-group'>
+                    <input class="form-control" type="text" name="tags"  placeholder="Tags (seperate by comma)">
                 </div>
                 
                 <!--Description --> 
             
-                <div class="form-group">
-                    <label for="comment">Content:</label>
-                         <textarea class="form-control" rows="5" id="description" name="description"></textarea>
+                <div class="form-group textarea-wrapper">
+                    <label for="comment">Description:</label>
+                         <textarea style="resize:none;" class="form-control" rows="5" id="description" name="description"></textarea>
                 </div>
                 
                 <!--Embed --> 
-                <div class="form-group">
-                    <label for="comment">Embed Media Player:</label>
-                         <textarea class="form-control" rows="2" id="embed" name="embed"></textarea>
-                </div>
+                <!--<div class='form-group textarea-wrapper'>-->
+                <!--    <label for="Embed">Embed Player:</label>-->
+                <!--    <textarea class="form-control" type="text" name="embed"></textarea>-->
+                <!--</div>-->
               
                 
                 <!--Submit --> 
@@ -40,5 +48,6 @@
 
 <a href="/posts">Go Back</a>
     </div>
+</div>
 </div>
 <% include ../partials/footer %>

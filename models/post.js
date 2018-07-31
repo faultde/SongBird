@@ -1,11 +1,13 @@
 var mongoose = require("mongoose");
+
+
  
 var postSchema = new mongoose.Schema({
    artist: String,
    title: String,
    image: String,
    description: String,
-   embed: String,
+   tags: [String],
    author:{
       id : {
          type: mongoose.Schema.Types.ObjectId,

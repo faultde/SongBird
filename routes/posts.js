@@ -12,7 +12,28 @@ var middleware = require("../middleware");
 // ===================
 
 router.get("/", (req,res)=>{
-    //Get all Post from DB
+    //if search
+    if(req.query.search){
+        const regex = new RegExp(escapeRegex(req.query.search),'gi');
+        //get all post with
+         Post.find({
+             $or : [
+                  { title : regex },
+                  { artist : regex },
+                  { tags : regex }
+                    ]
+         },(err,allPost)=>{
+            if(err){
+                console.log(err);
+            }
+            else{
+    // display Post from DB on webpage                
+                res.render("posts/index",{post:allPost});
+            }
+        });
+    }
+    else{
+        //Get all Post from DB
         Post.find({},(err,allPost)=>{
             if(err){
                 console.log(err);
@@ -22,32 +43,41 @@ router.get("/", (req,res)=>{
                 res.render("posts/index",{post:allPost});
             }
         });
+    }
+    
 
        
     });
     
- //Create - Create new campground
+ //Create - Create new Post
 router.post('/',middleware.isLoggedIn,(req,res)=>{
   
     //get data from form
     var artist = req.body.artist;
     var image = req.body.image;
     var title = req.body.title;
-    var rating = req.body.rating;
     var desc = req.body.description;
     var author = {
         id:req.user._id,
         username: req.user.username
     };
-    var newPost = {artist: artist,title: title ,image: image, rating: rating, description: desc, author:author};
     
-    //create new campground
+    var tags = req.body.tags;
+    var tagArr = tags.split(",");
+
+
+
+
+    var newPost = {artist: artist,title: title ,image: image, description: desc, author:author, tags:tagArr};
+    
+    //create new POST
     Post.create(newPost,(err,newPost)=>{
         if(err){
             console.log(err);
         }
         else{
             console.log(newPost.title + " has been added.");
+            console.log(newPost.tags);
     //redirect to Post page
              res.redirect('/posts');
         }
@@ -61,7 +91,10 @@ router.get('/new',middleware.isLoggedIn,(req,res)=>{
 
 // SHOW - more details
 
+
 router.get("/:id", (req,res)=>{
+    
+    
     //find the post with provided id
     Post.findById(req.params.id).populate("comments").exec(function(err,foundPost){
         if(err){
@@ -70,22 +103,38 @@ router.get("/:id", (req,res)=>{
             res.render("posts/show",{post: foundPost});
         }
     });
+   
 });
 
 //=============//
  //UPDATE ROUTE//
 //=============//
 
-// EDIT Post
+// EDIT Post add back ownership
 router.get("/:id/edit",middleware.checkPostOwnership,(req,res)=>{
+        
+    
       Post.findById(req.params.id,function(err,foundPost){
+          if(err){
+             console.log(err);
+          }
+          else{
         res.render("posts/edit", {post:foundPost});  
+          }
+        
       });
+      
 });
 
 router.put("/:id",middleware.checkPostOwnership,(req,res)=>{
+// Convert tag string into array
+var postUpdate = req.body.post;
+var newArr = postUpdate.tags.split(",");
+postUpdate.tags = newArr;
+console.log(postUpdate.tags);
+
     //find and update correct post
-    Post.findByIdAndUpdate(req.params.id,req.body.post,(err,updatedPost)=>{
+    Post.findByIdAndUpdate(req.params.id,postUpdate,(err,updatedPost)=>{
         if(err){
             res.redirect("/posts");
         }else{
@@ -104,6 +153,10 @@ router.delete("/:id",middleware.checkPostOwnership,(req,res)=>{
       }
   });
 });
+
+function escapeRegex(text) {
+    return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+}
 
 
 

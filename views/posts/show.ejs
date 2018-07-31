@@ -11,57 +11,55 @@
                 </div>
             </div>
             
-             <!-- Media Player-->
-             <div class="container">
-                <div class="col-md-6">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                       <p><%-post.embed %></p>
-                    </div>
-                </div>
-                </div>
-                </div>
-            
             
                 <!-- POST CONTENT -->
             <div class="col-md-9">
                 <div class="panel panel-default">
-                    <div class="panel-body">
-                       
-                            <img class="full-img" src="<%=post.image %>">
+                    <div class="panel-body text-center">
+                        <h2><%=post.title%></h2>
+                        <img class="full-img" src="<%=post.image %>">
                            
                         
                         <div class="caption-full">
+                  
+                            <div class="text-center">
+                                <h4><%=post.artist%></h4>
+                                <p><%-post.description%></p>
+                            </div>
                             
-                        <div class="text-center">
-                        <h2><%=post.title%></h2>
-                        <h4><%=post.artist%></h4>
-                        <p><%-post.description%></p>
-                        </div>
+                            <p class="text-right">
+                                <em>Submited by:</em><%= post.author.username %>
+                            </p>
+                            
+                            <!--Tags-->
+                            <div class="tag-container">
+                                <p style="display:inline;">
+                            <% for (i = 0; i < post.tags.length; ++i) { %>
                         
-                        <p class="text-right">
-                            <em>Submited by:</em><%= post.author.username %>
-                        </p>
+                            <a href="/posts/?search=<%=post.tags[i]%>">#<%=post.tags[i]%></a>
+                            <% } %>
+                            </p>
+                            </div>
                         
                         </div>
                         
                     <!-- PUT CRUD BUTTONS -->
                     <% if(currentUser && post.author.id.equals(currentUser.id)){ %>
-                                
+                                <div style="border:1px solid black;">
                                <a class="btn btn-xs btn-warning" href="/posts/<%=post.id %>/edit">Edit</a>
                         <form class="delete-form" action="/posts/<%= post.id%>?_method=DELETE" method="POST">
                             <button class="btn btn-xs btn-danger"?>Delete</button>
                         </form>
+                                </div>
                         <% } %>
                         
                       
                 </div>
-                </div>  
-               
-               
                 
-                <!-- COMMENTS -->
-                <div class="well">
+                <!--COMMENTS-->
+                <h1 style="text-align:center; padding-top:15px; border-top:2px solid grey;">COMMENTS</h1>
+                <div class="well" style="margin:20px;">
+               
                     <div class="text-right">
                         <a class="btn btn-success" href="/posts/<%= post.id%>/comments/new">Add Comment</a>
                     </div>
@@ -88,8 +86,11 @@
                         </div>
                     <% }) %>
                 </div>
+                </div>  
            
         </div>
+        
+        
     </div>
 </div>
 
