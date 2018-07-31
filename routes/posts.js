@@ -12,15 +12,55 @@ var middleware = require("../middleware");
 // ===================
 
 router.get("/", (req,res)=>{
+    
+    //User VIEW
+    if(req.isAuthenticated()){
+        console.log("USER View Enabled")
+        //if search
+            if(req.query.search){
+                const regex = new RegExp(escapeRegex(req.query.search),'gi');
+                //get all post with
+                 Post.find({
+                     $or : [
+                        {  $and: [{ title : regex },{status: false}] },
+                        {  $and: [{ artist : regex },{status: false}] },
+                        {  $and: [{ tags : regex },{status: false}]  }
+                            ]
+                 },(err,allPost)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                    // display Post from DB on webpage                
+                    res.render("posts/index",{post:allPost});
+                        }
+                    });
+                            }
+            else{
+                //Get all Post from DB
+                Post.find({},(err,allPost)=>{
+                    if(err){
+                        console.log(err);
+                    }
+                    else{
+                // display Post from DB on webpage                
+                res.render("posts/index",{post:allPost});
+                        }
+                });
+                }
+    
+}else  //PEASANT VIEW
+{   
+    console.log("Peasant View Enabled");
     //if search
     if(req.query.search){
         const regex = new RegExp(escapeRegex(req.query.search),'gi');
         //get all post with
          Post.find({
              $or : [
-                  { title : regex },
-                  { artist : regex },
-                  { tags : regex }
+                {  $and: [{ title : regex },{status: true}] },
+                {  $and: [{ artist : regex },{status: true}] },
+                {  $and: [{ tags : regex },{status: true}]  }
                     ]
          },(err,allPost)=>{
             if(err){
@@ -34,7 +74,9 @@ router.get("/", (req,res)=>{
     }
     else{
         //Get all Post from DB
-        Post.find({},(err,allPost)=>{
+        Post.find({status: true
+            
+        },(err,allPost)=>{
             if(err){
                 console.log(err);
             }
@@ -44,8 +86,7 @@ router.get("/", (req,res)=>{
             }
         });
     }
-    
-
+}
        
     });
     

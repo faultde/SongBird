@@ -8,6 +8,10 @@ var postSchema = new mongoose.Schema({
    image: String,
    description: String,
    tags: [String],
+   status: {
+      type: Boolean,
+      default: false
+   },
    author:{
       id : {
          type: mongoose.Schema.Types.ObjectId,

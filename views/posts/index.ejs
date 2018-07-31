@@ -15,7 +15,14 @@
     
 <% post.forEach(function(post){ %>
     
-    <div class="col-md-3 col-sm-6">  
+    <div class="col-md-3 col-sm-6"
+    <% if(post.status == false){ %>
+    style="border:3px solid red"
+    <% } %>
+    > 
+    <% if(post.status == false){ %>
+    <h4>*POST IS PENDING APROVAL*</h4>
+    <% } %>
      <div class="thumbnail">
      <img src="<%=post.image %>">
      <div class="caption">
