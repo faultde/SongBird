@@ -34,12 +34,21 @@
                 <!--<div class='form-group'>-->
                 <!--    <input class="form-control" type="text" name="post[embed]"  value="<%=post.embed%>">-->
                 <!--</div>-->
+                
+                <% if(currentUser.isAdmin){ %>
+                <!--Admin/Approve -->
+                            
+                    <form action="/posts/<%= post._id %>?_method=PUT" method="POST">
+                        <button class="btn btn-lg btn-success btn-block" type="text" name="post[status]"  value="true">Approve</button>
+                    </form>
+            
+
+                <% }else{ %>
                 <!--Update/Submit -->
-                
-                
-                <div class='form-group'>
-                  <button class="btn btn-lg btn-primary btn-block">Update</button>
-                </div>
+                    <div class='form-group'>
+                        <button class="btn btn-lg btn-primary btn-block">Update</button>
+                    </div>
+                <%}%>
             </form>
         </div>
 

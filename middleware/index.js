@@ -13,7 +13,7 @@ middlewareObj.checkPostOwnership = function(req,res,next){
               res.redirect("back");
           } else {
               //does user own post
-            if(foundPost.author.id.equals(req.user.id)){
+            if(foundPost.author.id.equals(req.user.id) || req.user.isAdmin){
                   next();
             } else {
                 req.flash("error","You dont have permission to do that!")
@@ -36,7 +36,7 @@ middlewareObj.checkCommentOwnership = function(req,res,next){
               res.redirect("back");
           } else {
               //does user own comment?
-            if(foundComment.author.id.equals(req.user.id)){
+            if(foundComment.author.id.equals(req.user.id) || req.user.isAdmin){
                   next();
             } else {
                 req.flash("error","You dont have permission to do that!")

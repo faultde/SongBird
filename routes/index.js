@@ -5,6 +5,7 @@ var User = require("../models/user");
 
 
 
+
 // ===================
 //  INDEX ROUTE
 // ===================
@@ -26,6 +27,9 @@ router.get("/register",(req,res)=>{
 router.post("/register",(req,res)=>{
     var username = new User({username: req.body.username});
     var pwd = req.body.password;
+    if(req.body.adminCode === "songbird.admin"){
+        username.isAdmin = true;
+    }
     User.register(username,pwd,(err,user)=>{
         if(err){
          

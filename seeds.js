@@ -9,7 +9,11 @@ var data = [
         image: "https://upload.wikimedia.org/wikipedia/en/9/9a/DaughtersSelfTitled.jpg",
         description:'blah blah blah',
         tags: ["metal","heavy","experimental"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
    }
         
     , 
@@ -19,7 +23,11 @@ var data = [
         image: "https://cps-static.rovicorp.com/3/JPG_500/MI0003/798/MI0003798962.jpg?partner=allrovi.com",
         description: "blah blah blah",
         tags: ["indie","heavy","acoustic"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
         
    }
         
@@ -30,7 +38,11 @@ var data = [
         image: "https://img.discogs.com/nz81M0Wcbs2HOJr8HAtPKDH4QA4=/fit-in/300x300/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-3107971-1316128217.jpeg.jpg",
         description: "blah blah blah",
         tags: ["punk","heavy","thrash"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     },
      {
         title: "good kid, m.A.A.d City", 
@@ -38,7 +50,11 @@ var data = [
         image: "https://images-na.ssl-images-amazon.com/images/I/51Zzc7PUDML._SY355_.jpg",
         description: "blah blah blah",
         tags: ["rap","heavy","hip-hop"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     },
     {
         title: "I'm The Man,  Who Will Find You", 
@@ -46,7 +62,11 @@ var data = [
         image: "https://media.pitchfork.com/photos/5929a475b1335d7bf169897e/1:1/w_320/657e4d25.jpg",
         description: "blah blah blah",
         tags: ["funk","soft","psychadelic"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     },
      {
         title: "Battlefields Forever", 
@@ -54,7 +74,11 @@ var data = [
         image: "https://f4.bcbits.com/img/a1067082796_5.jpg",
         description: "blah blah blah",
         tags: ["metal","loud","sludge"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     },
     {
         title: "TA1300", 
@@ -62,7 +86,11 @@ var data = [
         image: "https://images.pigeonsandplanes.com/images/c_limit,f_auto,fl_lossy,q_auto,w_1030/hboceur1hbayoeisqeki/denzel-curry-ta13oo-album-art",
         description: "blah blah blah",
         tags: ["rap","heavy","trap"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     },
     {
         title: "1999 WILDFIRE", 
@@ -70,7 +98,11 @@ var data = [
         image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTQfKxkh3D9yP4NBVeOTq06abhqG2TbOuoDX4KQm8vgWhwgkQVU",
         description: "blah blah blah",
         tags: ["rap","smooth","R&B"],
-        status:true
+        status:true,
+        author: {
+            id:  "5b54fccb41b5671c09921f45"
+        },
+        username : "faultde"
     }
     
 ];

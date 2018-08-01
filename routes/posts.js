@@ -12,10 +12,10 @@ var middleware = require("../middleware");
 // ===================
 
 router.get("/", (req,res)=>{
-    
+    var currentUser = req.user;
     //User VIEW
     if(req.isAuthenticated()){
-        console.log("USER View Enabled")
+        console.log("USER View Enabled");
         //if search
             if(req.query.search){
                 const regex = new RegExp(escapeRegex(req.query.search),'gi');
@@ -32,7 +32,7 @@ router.get("/", (req,res)=>{
                     }
                     else{
                     // display Post from DB on webpage                
-                    res.render("posts/index",{post:allPost});
+                    res.render("posts/index",{post:allPost,currentUser:currentUser});
                         }
                     });
                             }
